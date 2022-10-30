@@ -1,6 +1,5 @@
 import {
   Scene,
-  AxesHelper,
   AmbientLight,
   DirectionalLight,
   Mesh,
@@ -12,13 +11,12 @@ import {
   Color,
   DoubleSide,
   CylinderGeometry,
-  ConeGeometry,
   CircleGeometry,
   CapsuleGeometry,
+  RingGeometry
 } from "three"
-import { renderer, updateRenderer } from "../core/renderer"
+import { updateRenderer } from "../core/renderer"
 
-import { gui } from "../core/gui"
 
 export const scene = new Scene()
 
@@ -45,7 +43,181 @@ const PARAMS = {
   colorRedLightTrafficLight: '#FF0000',
   colorYellowLight: '#FFFF00',
   colorGreenLight: '#008000',
+  colorWheelCar: '#000',
 }
+
+// const geometryWheel = new CircleGeometry( .3, 50 );
+// const materialWheel = new MeshBasicMaterial( { color: PARAMS.colorWheelCar } );
+// const wheel = new Mesh( geometryWheel, materialWheel );
+// wheel.rotation.set(0, 0, 0);
+// wheel.position.set(5.5, .3, -.34);
+// scene.add( wheel );
+
+// const wheel2 = new Mesh( geometryWheel, materialWheel );
+// wheel2.rotation.set(0, 0, 0);
+// wheel2.position.set(4.5, .3, -.34);
+// scene.add( wheel2 );
+
+// const wheel3 = new Mesh( geometryWheel, materialWheel );
+// wheel3.rotation.set(0, 0, Math.PI / 2);
+// wheel3.position.set(4.5, .3, -1.4);
+// scene.add( wheel3 );
+
+const geometryWheel2 = new RingGeometry( .3, .1, 32 );
+const materialWheel2 = new MeshBasicMaterial( { color: PARAMS.colorWheelCar, side: DoubleSide } );
+const mesh = new Mesh( geometryWheel2, materialWheel2 );
+mesh.position.set(4.5, .3, -1.3);
+scene.add( mesh );
+
+const mesh2 = new Mesh( geometryWheel2, materialWheel2 );
+mesh2.position.set(5.5, .3, -.34);
+scene.add( mesh2 );
+
+const mesh3 = new Mesh( geometryWheel2, materialWheel2 );
+mesh3.position.set(4.5, .3, -.34);
+scene.add( mesh3 );
+
+const mesh4 = new Mesh( geometryWheel2, materialWheel2 );
+mesh4.position.set(5.5, .3, -1.34);
+scene.add( mesh4 );
+
+const geometryBenchWindow = new PlaneGeometry( .4, .8 );
+const materialBenchWindow = new MeshBasicMaterial( {color:'#fff', side: DoubleSide} );
+const windowCar = new Mesh( geometryBenchWindow, materialBenchWindow );
+windowCar.rotation.set(0, Math.PI / 2, Math.PI / 2);
+windowCar.position.set(4.48, 1, -.8);
+scene.add( windowCar );
+
+const geometryBenchWindow2 = new PlaneGeometry( .4, 1 );
+const windowCar2 = new Mesh( geometryBenchWindow2, materialBenchWindow );
+windowCar2.rotation.set(0, 0, Math.PI / 2);
+windowCar2.position.set(5.2, 1, -.34);
+scene.add( windowCar2 );
+
+const windowCar3 = new Mesh( geometryBenchWindow2, materialBenchWindow );
+windowCar3.rotation.set(0, 0, Math.PI / 2);
+windowCar3.position.set(5.2, 1, -1.26);
+scene.add( windowCar3 );
+
+const windowCar4 = new Mesh( geometryBenchWindow, materialBenchWindow );
+windowCar4.rotation.set(0, Math.PI / 2, Math.PI / 2);
+windowCar4.position.set(5.92, 1, -.8);
+scene.add( windowCar4 );
+
+const geometrya = new SphereGeometry( .1, 32, 16 );
+const materiala = new MeshBasicMaterial( { color: PARAMS.colorRedLightTrafficLight } );
+const sphere = new Mesh( geometrya, materiala );
+sphere.position.set(4.16, .6, -1.1);
+scene.add( sphere );
+
+const sphere2 = new Mesh( geometrya, materiala );
+sphere2.position.set(4.16, .6, -.5);
+scene.add( sphere2 );
+
+const geometryCar2 = new BoxGeometry( 1.4, .8, .9 );
+const materialCar2 = new MeshBasicMaterial( {color: PARAMS.colorPlateTrafficLight} );
+const cubeCar2 = new Mesh( geometryCar2, materialCar2 );
+cubeCar2.position.set(5.2, .9, -.8);
+scene.add( cubeCar2 );
+
+const geometryCar = new BoxGeometry( 1.8, .5, .9 );
+const materialCar = new MeshBasicMaterial( {color: PARAMS.colorPlateTrafficLight} );
+const cubeCar = new Mesh( geometryCar, materialCar );
+cubeCar.position.set(5, .6, -.8);
+scene.add( cubeCar );
+
+const geometryBench4 = new PlaneGeometry( 1, 2.5 );
+const materialBench4 = new MeshBasicMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
+const bench17 = new Mesh( geometryBench4, materialBench4 );
+bench17.rotation.set(Math.PI / 2, 0, 0);
+bench17.position.set(-3, .7, 5);
+scene.add( bench17 );
+
+const bench18 = new Mesh( geometryBench4, materialBench4 );
+bench18.rotation.set(0, Math.PI / 2, Math.PI / 2);
+bench18.position.set(-3.5, 1.2, 5);
+scene.add( bench18 );
+
+const geometryPipeBench5 = new CapsuleGeometry( .1, .4, 2, 8 );
+const materialPipeBench5 = new MeshBasicMaterial( {color: '#fff'} );
+const pipeBench19 = new Mesh( geometryPipeBench5, materialPipeBench5 );
+pipeBench19.position.set(-2.5, .5, 4);
+scene.add( pipeBench19 );
+
+const pipeBench20 = new Mesh( geometryPipeBench5, materialPipeBench5 );
+pipeBench20.position.set(-2.5, .5, 6);
+scene.add( pipeBench20 );
+
+
+const pipeBench21 = new Mesh( geometryPipeBench5, materialPipeBench5 );
+pipeBench21.position.set(-3.5, .5, 6);
+scene.add( pipeBench21 );
+
+const pipeBench22 = new Mesh( geometryPipeBench5, materialPipeBench5 );
+pipeBench22.position.set(-3.5, .5, 4);
+scene.add( pipeBench22 );
+
+const geometryBench3 = new PlaneGeometry( 1, 2.5 );
+const materialBench3 = new MeshBasicMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
+const bench11 = new Mesh( geometryBench3, materialBench3 );
+bench11.rotation.set(Math.PI / 2, 0, 0);
+bench11.position.set(3, .7, 5);
+scene.add( bench11 );
+
+const bench12 = new Mesh( geometryBench3, materialBench3 );
+bench12.rotation.set(0, Math.PI / 2, Math.PI / 2);
+bench12.position.set(3.5, 1.2, 5);
+scene.add( bench12 );
+
+const geometryPipeBench4 = new CapsuleGeometry( .1, .4, 2, 8 );
+const materialPipeBench4 = new MeshBasicMaterial( {color: '#fff'} );
+const pipeBench13 = new Mesh( geometryPipeBench4, materialPipeBench4 );
+pipeBench13.position.set(2.5, .5, 4);
+scene.add( pipeBench13 );
+
+const pipeBench14 = new Mesh( geometryPipeBench4, materialPipeBench4 );
+pipeBench14.position.set(2.5, .5, 6);
+scene.add( pipeBench14 );
+
+
+const pipeBench15 = new Mesh( geometryPipeBench4, materialPipeBench4 );
+pipeBench15.position.set(3.5, .5, 6);
+scene.add( pipeBench15 );
+
+const pipeBench16 = new Mesh( geometryPipeBench4, materialPipeBench4 );
+pipeBench16.position.set(3.5, .5, 4);
+scene.add( pipeBench16 );
+
+const geometryBench2 = new PlaneGeometry( 1, 2.5 );
+const materialBench2 = new MeshBasicMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
+const bench5 = new Mesh( geometryBench2, materialBench2 );
+bench5.rotation.set(Math.PI / 2, 0, 0);
+bench5.position.set(3, .7, -5);
+scene.add( bench5 );
+
+const bench6 = new Mesh( geometryBench2, materialBench2 );
+bench6.rotation.set(0, Math.PI / 2, Math.PI / 2);
+bench6.position.set(3.5, 1.2, -5);
+scene.add( bench6 );
+
+const geometryPipeBench2 = new CapsuleGeometry( .1, .4, 2, 8 );
+const materialPipeBench2 = new MeshBasicMaterial( {color: '#fff'} );
+const pipeBench7 = new Mesh( geometryPipeBench2, materialPipeBench2 );
+pipeBench7.position.set(2.5, .5, -4);
+scene.add( pipeBench7 );
+
+const pipeBench8 = new Mesh( geometryPipeBench2, materialPipeBench2 );
+pipeBench8.position.set(2.5, .5, -6);
+scene.add( pipeBench8 );
+
+
+const pipeBench9 = new Mesh( geometryPipeBench2, materialPipeBench2 );
+pipeBench9.position.set(3.5, .5, -6);
+scene.add( pipeBench9 );
+
+const pipeBench10 = new Mesh( geometryPipeBench2, materialPipeBench2 );
+pipeBench10.position.set(3.5, .5, -4);
+scene.add( pipeBench10 );
 
 const geometryBench = new PlaneGeometry( 1, 2.5 );
 const materialBench = new MeshBasicMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
