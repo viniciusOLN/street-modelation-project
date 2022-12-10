@@ -68,25 +68,6 @@ const PARAMS = {
   colorWheelCar: '#000',
 }
 
-// const geometryWheel = new CircleGeometry( .3, 50 );
-// const materialWheel = new MeshLambertMaterial( { color: PARAMS.colorWheelCar } );
-// const wheel = new Mesh( geometryWheel, materialWheel );
-// wheel.rotation.set(0, 0, 0);
-// wheel.position.set(5.5, .3, -.34);
-// scene.add( wheel );
-
-// const wheel2 = new Mesh( geometryWheel, materialWheel );
-// wheel2.rotation.set(0, 0, 0);
-// wheel2.position.set(4.5, .3, -.34);
-// scene.add( wheel2 );
-
-// const wheel3 = new Mesh( geometryWheel, materialWheel );
-// wheel3.rotation.set(0, 0, Math.PI / 2);
-// wheel3.position.set(4.5, .3, -1.4);
-// scene.add( wheel3 );
-
-
-
 const geometryWheel2 = new RingGeometry( .3, .1, 32 );
 const materialWheel2 = new MeshLambertMaterial( { color: PARAMS.colorWheelCar, side: DoubleSide } );
 const mesh = new Mesh( geometryWheel2, materialWheel2 );
