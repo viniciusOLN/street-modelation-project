@@ -6,19 +6,41 @@ import {
   SphereGeometry,
   MeshToonMaterial,
   PlaneGeometry,
-  BoxGeometry,
-  MeshBasicMaterial,
+  BoxGeometry,  
   Color,
   DoubleSide,
   CylinderGeometry,
   CircleGeometry,
   CapsuleGeometry,
-  RingGeometry
+  RingGeometry,
+  PointLight,
+  MeshLambertMaterial,
 } from "three"
 import { updateRenderer } from "../core/renderer"
 
+import { gui } from "../core/gui"
 
 export const scene = new Scene()
+
+const light = new PointLight( 0xFF0000, 8, 100 );
+light.position.set( 2.2, -0.02, -0.82 );
+scene.add( light );
+
+const directionalLightCtrls = gui.addFolder({
+  title: 'Luz do carro',
+});
+
+directionalLightCtrls.addInput(light.position, 'x', {
+  label: 'direcao x',
+})
+
+directionalLightCtrls.addInput(light.position, 'y', {
+  label: 'direcao y',
+})
+
+directionalLightCtrls.addInput(light.position, 'z', {
+  label: 'direcao z',
+})
 
 const ambientLight = new AmbientLight(0xffffff, 0.5)
 scene.add(ambientLight)
@@ -47,7 +69,7 @@ const PARAMS = {
 }
 
 // const geometryWheel = new CircleGeometry( .3, 50 );
-// const materialWheel = new MeshBasicMaterial( { color: PARAMS.colorWheelCar } );
+// const materialWheel = new MeshLambertMaterial( { color: PARAMS.colorWheelCar } );
 // const wheel = new Mesh( geometryWheel, materialWheel );
 // wheel.rotation.set(0, 0, 0);
 // wheel.position.set(5.5, .3, -.34);
@@ -63,8 +85,10 @@ const PARAMS = {
 // wheel3.position.set(4.5, .3, -1.4);
 // scene.add( wheel3 );
 
+
+
 const geometryWheel2 = new RingGeometry( .3, .1, 32 );
-const materialWheel2 = new MeshBasicMaterial( { color: PARAMS.colorWheelCar, side: DoubleSide } );
+const materialWheel2 = new MeshLambertMaterial( { color: PARAMS.colorWheelCar, side: DoubleSide } );
 const mesh = new Mesh( geometryWheel2, materialWheel2 );
 mesh.position.set(4.5, .3, -1.3);
 scene.add( mesh );
@@ -82,7 +106,7 @@ mesh4.position.set(5.5, .3, -1.34);
 scene.add( mesh4 );
 
 const geometryBenchWindow = new PlaneGeometry( .4, .8 );
-const materialBenchWindow = new MeshBasicMaterial( {color:'#fff', side: DoubleSide} );
+const materialBenchWindow = new MeshLambertMaterial( {color:'#fff', side: DoubleSide} );
 const windowCar = new Mesh( geometryBenchWindow, materialBenchWindow );
 windowCar.rotation.set(0, Math.PI / 2, Math.PI / 2);
 windowCar.position.set(4.48, 1, -.8);
@@ -105,7 +129,7 @@ windowCar4.position.set(5.92, 1, -.8);
 scene.add( windowCar4 );
 
 const geometrya = new SphereGeometry( .1, 32, 16 );
-const materiala = new MeshBasicMaterial( { color: PARAMS.colorRedLightTrafficLight } );
+const materiala = new MeshLambertMaterial( { color: PARAMS.colorRedLightTrafficLight } );
 const sphere = new Mesh( geometrya, materiala );
 sphere.position.set(4.16, .6, -1.1);
 scene.add( sphere );
@@ -115,19 +139,19 @@ sphere2.position.set(4.16, .6, -.5);
 scene.add( sphere2 );
 
 const geometryCar2 = new BoxGeometry( 1.4, .8, .9 );
-const materialCar2 = new MeshBasicMaterial( {color: PARAMS.colorPlateTrafficLight} );
+const materialCar2 = new MeshLambertMaterial( {color: PARAMS.colorPlateTrafficLight} );
 const cubeCar2 = new Mesh( geometryCar2, materialCar2 );
 cubeCar2.position.set(5.2, .9, -.8);
 scene.add( cubeCar2 );
 
 const geometryCar = new BoxGeometry( 1.8, .5, .9 );
-const materialCar = new MeshBasicMaterial( {color: PARAMS.colorPlateTrafficLight} );
+const materialCar = new MeshLambertMaterial( {color: PARAMS.colorPlateTrafficLight} );
 const cubeCar = new Mesh( geometryCar, materialCar );
 cubeCar.position.set(5, .6, -.8);
 scene.add( cubeCar );
 
 const geometryBench4 = new PlaneGeometry( 1, 2.5 );
-const materialBench4 = new MeshBasicMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
+const materialBench4 = new MeshLambertMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
 const bench17 = new Mesh( geometryBench4, materialBench4 );
 bench17.rotation.set(Math.PI / 2, 0, 0);
 bench17.position.set(-3, .7, 5);
@@ -139,7 +163,7 @@ bench18.position.set(-3.5, 1.2, 5);
 scene.add( bench18 );
 
 const geometryPipeBench5 = new CapsuleGeometry( .1, .4, 2, 8 );
-const materialPipeBench5 = new MeshBasicMaterial( {color: '#fff'} );
+const materialPipeBench5 = new MeshLambertMaterial( {color: '#fff'} );
 const pipeBench19 = new Mesh( geometryPipeBench5, materialPipeBench5 );
 pipeBench19.position.set(-2.5, .5, 4);
 scene.add( pipeBench19 );
@@ -158,7 +182,7 @@ pipeBench22.position.set(-3.5, .5, 4);
 scene.add( pipeBench22 );
 
 const geometryBench3 = new PlaneGeometry( 1, 2.5 );
-const materialBench3 = new MeshBasicMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
+const materialBench3 = new MeshLambertMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
 const bench11 = new Mesh( geometryBench3, materialBench3 );
 bench11.rotation.set(Math.PI / 2, 0, 0);
 bench11.position.set(3, .7, 5);
@@ -170,7 +194,7 @@ bench12.position.set(3.5, 1.2, 5);
 scene.add( bench12 );
 
 const geometryPipeBench4 = new CapsuleGeometry( .1, .4, 2, 8 );
-const materialPipeBench4 = new MeshBasicMaterial( {color: '#fff'} );
+const materialPipeBench4 = new MeshLambertMaterial( {color: '#fff'} );
 const pipeBench13 = new Mesh( geometryPipeBench4, materialPipeBench4 );
 pipeBench13.position.set(2.5, .5, 4);
 scene.add( pipeBench13 );
@@ -189,7 +213,7 @@ pipeBench16.position.set(3.5, .5, 4);
 scene.add( pipeBench16 );
 
 const geometryBench2 = new PlaneGeometry( 1, 2.5 );
-const materialBench2 = new MeshBasicMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
+const materialBench2 = new MeshLambertMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
 const bench5 = new Mesh( geometryBench2, materialBench2 );
 bench5.rotation.set(Math.PI / 2, 0, 0);
 bench5.position.set(3, .7, -5);
@@ -201,7 +225,7 @@ bench6.position.set(3.5, 1.2, -5);
 scene.add( bench6 );
 
 const geometryPipeBench2 = new CapsuleGeometry( .1, .4, 2, 8 );
-const materialPipeBench2 = new MeshBasicMaterial( {color: '#fff'} );
+const materialPipeBench2 = new MeshLambertMaterial( {color: '#fff'} );
 const pipeBench7 = new Mesh( geometryPipeBench2, materialPipeBench2 );
 pipeBench7.position.set(2.5, .5, -4);
 scene.add( pipeBench7 );
@@ -220,7 +244,7 @@ pipeBench10.position.set(3.5, .5, -4);
 scene.add( pipeBench10 );
 
 const geometryBench = new PlaneGeometry( 1, 2.5 );
-const materialBench = new MeshBasicMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
+const materialBench = new MeshLambertMaterial( {color: PARAMS.colorStreet, side: DoubleSide} );
 const bench = new Mesh( geometryBench, materialBench );
 bench.rotation.set(Math.PI / 2, 0, 0);
 bench.position.set(-3, .7, -5);
@@ -232,7 +256,7 @@ bench2.position.set(-3.5, 1.2, -5);
 scene.add( bench2 );
 
 const geometryPipeBench = new CapsuleGeometry( .1, .4, 2, 8 );
-const materialPipeBench = new MeshBasicMaterial( {color: '#fff'} );
+const materialPipeBench = new MeshLambertMaterial( {color: '#fff'} );
 const pipeBench = new Mesh( geometryPipeBench, materialPipeBench );
 pipeBench.position.set(-2.5, .5, -4);
 scene.add( pipeBench );
@@ -251,31 +275,31 @@ pipeBench4.position.set(-3.5, .5, -4);
 scene.add( pipeBench4 );
 
 const geometryRedLight = new CircleGeometry( .2, 32 );
-const materialRedLight = new MeshBasicMaterial( { color: PARAMS.colorRedLightTrafficLight } );
+const materialRedLight = new MeshLambertMaterial( { color: PARAMS.colorRedLightTrafficLight } );
 const redLight = new Mesh( geometryRedLight, materialRedLight );
 redLight.rotation.set(0, Math.PI / 2, 0);
 redLight.position.set(1.82, 2.6, 1.6);
 scene.add( redLight );
 
-const yellowLight = new Mesh( geometryRedLight, new MeshBasicMaterial( { color: PARAMS.colorYellowLight } ) );
+const yellowLight = new Mesh( geometryRedLight, new MeshLambertMaterial( { color: PARAMS.colorYellowLight } ) );
 yellowLight.rotation.set(0, Math.PI / 2, 0);
 yellowLight.position.set(1.82, 2, 1.6);
 scene.add( yellowLight );
 
-const greenLight = new Mesh( geometryRedLight, new MeshBasicMaterial( { color: PARAMS.colorGreenLight } ) );
+const greenLight = new Mesh( geometryRedLight, new MeshLambertMaterial( { color: PARAMS.colorGreenLight } ) );
 greenLight.rotation.set(0, Math.PI / 2, 0);
 greenLight.position.set(1.82, 1.4, 1.6);
 scene.add( greenLight );
 
 
 const geometryBoxTrafficLight = new BoxGeometry( .4, 1.8, 1 );
-const materialBoxTrafficLight = new MeshBasicMaterial( {color: PARAMS.colorPlateTrafficLight} );
+const materialBoxTrafficLight = new MeshLambertMaterial( {color: PARAMS.colorPlateTrafficLight} );
 const cube = new Mesh( geometryBoxTrafficLight, materialBoxTrafficLight );
 cube.position.set(1.6, 2, 1.6);
 scene.add( cube );
 
 const geometryPipeTrafficLight = new CylinderGeometry( .1, .1, 2.2, 20 );
-const materialPipeTrafficLight = new MeshBasicMaterial( {color: PARAMS.colorPipeTrafficLight} );
+const materialPipeTrafficLight = new MeshLambertMaterial( {color: PARAMS.colorPipeTrafficLight} );
 const pipe = new Mesh( geometryPipeTrafficLight, materialPipeTrafficLight );
 pipe.position.set(1.6, 1.2, 1.6);
 scene.add( pipe );
