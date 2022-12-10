@@ -54,6 +54,24 @@ directionalLight.position.set(0.25, 2, 2.25)
 
 scene.add(directionalLight)
 
+const directionalLightsCtrls = gui.addFolder({
+  title: 'Luz Direcional',
+});
+
+directionalLightsCtrls.addInput(directionalLight.position, 'x', {
+  label: 'direcao x',
+})
+
+directionalLightsCtrls.addInput(directionalLight.position, 'y', {
+  label: 'direcao y',
+})
+
+directionalLightsCtrls.addInput(directionalLight.position, 'z', {
+  label: 'direcao z',
+})
+
+
+
 const PARAMS = {
   colorStreet: '#222',
   colorConcret: '#666',
